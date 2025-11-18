@@ -70,14 +70,7 @@ export default function App() {
     <Box sx={{ display: "flex", alignItems: "flex-start", py: 6 }}>
       <Container
         maxWidth="lg"
-        sx={{
-          bgcolor: "white",
-          p: 4,
-          borderRadius: 2,
-          boxShadow: 3,
-          mx: "auto",
-        
-        }}
+       
       >
         <Typography variant="h4" gutterBottom textAlign="center">
           Companies Directory
