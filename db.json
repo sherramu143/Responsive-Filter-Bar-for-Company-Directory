@@ -1,0 +1,139 @@
+{
+  "companies": [
+    {
+      "id": "1",
+      "name": "BrightSoft Solutions",
+      "industry": "Software",
+      "location": "Bengaluru",
+      "employees": 120,
+      "description": "SaaS and product engineering experts.",
+      "website": "#"
+    },
+    {
+      "id": "2",
+      "name": "GreenFoods Pvt Ltd",
+      "industry": "Food",
+      "location": "Hyderabad",
+      "employees": 60,
+      "description": "Healthy organic food delivery service.",
+      "website": "#"
+    },
+    {
+      "id": "3",
+      "name": "FinEdge Analytics",
+      "industry": "Finance",
+      "location": "Mumbai",
+      "employees": 220,
+      "description": "Financial analytics and AI-powered risk modeling.",
+      "website": "#"
+    },
+    {
+      "id": "4",
+      "name": "EduNext",
+      "industry": "Education",
+      "location": "Bengaluru",
+      "employees": 35,
+      "description": "Innovative E-learning platform for K-12.",
+      "website": "#"
+    },
+    {
+      "id": "5",
+      "name": "TravelGo",
+      "industry": "Travel",
+      "location": "Delhi",
+      "employees": 80,
+      "description": "Online travel booking platform.",
+      "website": "#"
+    },
+    {
+      "id": "6",
+      "name": "HealthSphere",
+      "industry": "Healthcare",
+      "location": "Chennai",
+      "employees": 150,
+      "description": "Healthcare management solutions.",
+      "website": "#"
+    },
+    {
+      "id": "7",
+      "name": "EcoBuild Constructions",
+      "industry": "Construction",
+      "location": "Pune",
+      "employees": 300,
+      "description": "Sustainable construction and building services.",
+      "website": "#"
+    },
+    {
+      "id": "8",
+      "name": "SmartRetail Co",
+      "industry": "Retail",
+      "location": "Mumbai",
+      "employees": 90,
+      "description": "AI-driven retail solutions.",
+      "website": "#"
+    },
+    {
+      "id": "9",
+      "name": "Travelista",
+      "industry": "Travel",
+      "location": "Bengaluru",
+      "employees": 45,
+      "description": "Personalized travel itineraries and bookings.",
+      "website": "#"
+    },
+    {
+      "id": "10",
+      "name": "BioGen Labs",
+      "industry": "Healthcare",
+      "location": "Hyderabad",
+      "employees": 200,
+      "description": "Biotech research and pharmaceutical development.",
+      "website": "#"
+    },
+    {
+      "id": "11",
+      "name": "CloudWave Solutions",
+      "industry": "Software",
+      "location": "Chennai",
+      "employees": 180,
+      "description": "Cloud computing and IT solutions.",
+      "website": "#"
+    },
+    {
+      "id": "12",
+      "name": "Foodies Hub",
+      "industry": "Food",
+      "location": "Delhi",
+      "employees": 75,
+      "description": "Restaurant discovery and food delivery platform.",
+      "website": "#"
+    },
+    {
+      "id": "13",
+      "name": "EduBridge",
+      "industry": "Education",
+      "location": "Mumbai",
+      "employees": 50,
+      "description": "Online learning for professional courses.",
+      "website": "#"
+    },
+    {
+      "id": "14",
+      "name": "FinSecure",
+      "industry": "Finance",
+      "location": "Bengaluru",
+      "employees": 130,
+      "description": "Digital banking and cybersecurity solutions.",
+      "website": "#"
+    },
+    {
+      "id": "15",
+      "name": "UrbanMoves",
+      "industry": "Transport",
+      "location": "Pune",
+      "employees": 95,
+      "description": "Smart urban mobility and ride-sharing platform.",
+      "website": "#"
+    }
+  ]
+}
