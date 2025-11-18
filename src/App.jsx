@@ -76,7 +76,7 @@ export default function App() {
           borderRadius: 2,
           boxShadow: 3,
           mx: "auto",
-          marginLeft: 7,
+        
         }}
       >
         <Typography variant="h4" gutterBottom textAlign="center">
