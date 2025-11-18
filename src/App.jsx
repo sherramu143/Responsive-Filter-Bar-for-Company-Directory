@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Typography, Box } from "@mui/material";
 import CompanyList from "./components/CompanyList";
 import Filters from "./components/Filters";
 import PaginationComp from "./components/Pagination";
+import data from "../db.json"; // import static companies data
 
 export default function App() {
-  const [companies, setCompanies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  // Initialize state directly
+  const [companies] = useState(data.companies);
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("All");
   const [industry, setIndustry] = useState("All");
@@ -17,84 +16,7 @@ export default function App() {
 
   const PER_PAGE = 6;
 
-  // Fetch companies from JSON Server
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const controller = new AbortController(); // for timeout handling
-        const timeout = setTimeout(() => controller.abort(), 10000);
-
-        const res = await fetch("http://localhost:5000/companies", {
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeout);
-
-        if (!res.ok) throw new Error(`Failed to fetch companies: ${res.status}`);
-
-        const data = await res.json();
-
-        if (!Array.isArray(data)) throw new Error("Invalid data format received");
-
-        setCompanies(data);
-      } catch (err) {
-        if (err.name === "AbortError") {
-          setError("Request timed out. Please try again.");
-        } else {
-          setError(err.message || "Something went wrong while fetching data.");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCompanies();
-  }, []);
-
-  // Reset page to 1 whenever filters change
-  useEffect(() => {
-    setPage(1);
-  }, [search, location, industry, sortOrder]);
-
-  // Filter and sort companies
-  const filteredCompanies = useMemo(() => {
-    let data = [...companies];
-
-    data = data.filter((c) => {
-      const name = c.name || "";
-      const description = c.description || "";
-      return (
-        name.toLowerCase().includes(search.toLowerCase()) ||
-        description.toLowerCase().includes(search.toLowerCase())
-      );
-    });
-
-    if (location !== "All")
-      data = data.filter((c) => c.location === location || c.location === null);
-
-    if (industry !== "All")
-      data = data.filter((c) => c.industry === industry || c.industry === null);
-
-    data.sort((a, b) => {
-      const nameA = a.name || "";
-      const nameB = b.name || "";
-      return sortOrder === "asc"
-        ? nameA.localeCompare(nameB)
-        : nameB.localeCompare(nameA);
-    });
-
-    return data;
-  }, [companies, search, location, industry, sortOrder]);
-
-  const totalPages = Math.ceil(filteredCompanies.length / PER_PAGE);
-  const paginatedCompanies = filteredCompanies.slice(
-    (page - 1) * PER_PAGE,
-    page * PER_PAGE
-  );
-
+  // Reset page when filters change
   const resetFilters = () => {
     setSearch("");
     setLocation("All");
@@ -103,14 +25,46 @@ export default function App() {
     setPage(1);
   };
 
-  if (loading)
-    return <Typography textAlign="center">Loading companies...</Typography>;
-  if (error)
-    return (
-      <Typography textAlign="center" color="error">
-        {error}
-      </Typography>
-    );
+  const filteredCompanies = useMemo(() => {
+    let filtered = [...companies];
+
+    // Search filter
+    filtered = filtered.filter((c) => {
+      const name = c.name || "";
+      const description = c.description || "";
+      return (
+        name.toLowerCase().includes(search.toLowerCase()) ||
+        description.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+
+    // Location filter
+    if (location !== "All") {
+      filtered = filtered.filter((c) => c.location === location);
+    }
+
+    // Industry filter
+    if (industry !== "All") {
+      filtered = filtered.filter((c) => c.industry === industry);
+    }
+
+    // Sort alphabetically
+    filtered.sort((a, b) => {
+      const nameA = a.name || "";
+      const nameB = b.name || "";
+      return sortOrder === "asc"
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
+    });
+
+    return filtered;
+  }, [companies, search, location, industry, sortOrder]);
+
+  const totalPages = Math.ceil(filteredCompanies.length / PER_PAGE);
+  const paginatedCompanies = filteredCompanies.slice(
+    (page - 1) * PER_PAGE,
+    page * PER_PAGE
+  );
 
   return (
     <Box sx={{ display: "flex", alignItems: "flex-start", py: 6 }}>
